@@ -1,216 +1,23 @@
 {
-  "$comment": "示范信源：首次启动时导入（scripts/seed.ts），已存在的不会被覆盖。之后在后台“信源”里新建、修改和暂停。字段说明见 docs/customize.md。",
+  "$comment": "国内电商首批信源配置：包含已实测可用的网页列表/RSS（enabled=true）与待补 ghid/Key 的微信公众号及外部推送模板（enabled=false）。字段规范见 docs/sources.md。",
   "sources": [
     {
-      "id": "rss-openai-news",
-      "name": "OpenAI News",
-      "kind": "rss",
+      "id": "web-pai-home",
+      "name": "派代 / 电商派",
+      "kind": "web_list",
       "config": {
-        "feedUrl": "https://openai.com/news/rss.xml",
-        "_aihot": {
-          "initialBackfillLimit": 8
-        }
-      },
-      "tier": "T1",
-      "owner_entity_id": "openai",
-      "participation_mode": "editorial",
-      "interval_minutes": 120,
-      "tags": [
-        "官方"
-      ],
-      "site_fulltext": false,
-      "syndicate_fulltext": false
-    },
-    {
-      "id": "rss-google-deepmind",
-      "name": "Google DeepMind",
-      "kind": "rss",
-      "config": {
-        "feedUrl": "https://deepmind.google/blog/rss.xml",
-        "_aihot": {
-          "initialBackfillLimit": 8
-        }
-      },
-      "tier": "T1",
-      "owner_entity_id": "google",
-      "participation_mode": "editorial",
-      "interval_minutes": 120,
-      "tags": [
-        "官方"
-      ],
-      "site_fulltext": false,
-      "syndicate_fulltext": false
-    },
-    {
-      "id": "rss-google-research",
-      "name": "Google Research",
-      "kind": "rss",
-      "config": {
-        "feedUrl": "https://research.google/blog/rss/",
-        "_aihot": {
-          "initialBackfillLimit": 8
-        }
-      },
-      "tier": "T1",
-      "owner_entity_id": "google",
-      "participation_mode": "editorial",
-      "interval_minutes": 120,
-      "tags": [
-        "官方",
-        "研究"
-      ],
-      "site_fulltext": false,
-      "syndicate_fulltext": false
-    },
-    {
-      "id": "rss-hugging-face",
-      "name": "Hugging Face Blog",
-      "kind": "rss",
-      "config": {
-        "feedUrl": "https://huggingface.co/blog/feed.xml",
-        "_aihot": {
-          "initialBackfillLimit": 8
-        }
-      },
-      "tier": "T1",
-      "owner_entity_id": "hugging-face",
-      "participation_mode": "editorial",
-      "interval_minutes": 120,
-      "tags": [
-        "官方",
-        "开源"
-      ],
-      "site_fulltext": false,
-      "syndicate_fulltext": false
-    },
-    {
-      "id": "rss-microsoft-research",
-      "name": "Microsoft Research",
-      "kind": "rss",
-      "config": {
-        "feedUrl": "https://www.microsoft.com/en-us/research/feed/",
-        "_aihot": {
-          "initialBackfillLimit": 8
-        }
-      },
-      "tier": "T1",
-      "owner_entity_id": "microsoft",
-      "participation_mode": "editorial",
-      "interval_minutes": 120,
-      "tags": [
-        "官方",
-        "研究"
-      ],
-      "site_fulltext": false,
-      "syndicate_fulltext": false
-    },
-    {
-      "id": "rss-nvidia-blog",
-      "name": "NVIDIA Blog",
-      "kind": "rss",
-      "config": {
-        "feedUrl": "https://blogs.nvidia.com/feed/",
-        "_aihot": {
-          "initialBackfillLimit": 8
-        }
-      },
-      "tier": "T1",
-      "owner_entity_id": "nvidia",
-      "participation_mode": "editorial",
-      "interval_minutes": 120,
-      "tags": [
-        "官方"
-      ],
-      "site_fulltext": false,
-      "syndicate_fulltext": false
-    },
-    {
-      "id": "rss-aws-ml",
-      "name": "AWS Machine Learning Blog",
-      "kind": "rss",
-      "config": {
-        "feedUrl": "https://aws.amazon.com/blogs/machine-learning/feed/",
-        "_aihot": {
-          "initialBackfillLimit": 8
-        }
-      },
-      "tier": "T1",
-      "owner_entity_id": null,
-      "participation_mode": "editorial",
-      "interval_minutes": 120,
-      "tags": [
-        "官方",
-        "教程"
-      ],
-      "site_fulltext": false,
-      "syndicate_fulltext": false
-    },
-    {
-      "id": "rss-github-ai",
-      "name": "GitHub Blog · AI & ML",
-      "kind": "rss",
-      "config": {
-        "feedUrl": "https://github.blog/ai-and-ml/feed/",
-        "_aihot": {
-          "initialBackfillLimit": 8
-        }
-      },
-      "tier": "T1",
-      "owner_entity_id": null,
-      "participation_mode": "editorial",
-      "interval_minutes": 120,
-      "tags": [
-        "官方"
-      ],
-      "site_fulltext": false,
-      "syndicate_fulltext": false
-    },
-    {
-      "id": "rss-mistral",
-      "name": "Mistral AI",
-      "kind": "rss",
-      "config": {
-        "feedUrl": "https://mistral.ai/news/rss",
-        "_aihot": {
-          "initialBackfillLimit": 8
-        }
-      },
-      "tier": "T1",
-      "owner_entity_id": null,
-      "participation_mode": "editorial",
-      "interval_minutes": 120,
-      "tags": [
-        "官方"
-      ],
-      "site_fulltext": false,
-      "syndicate_fulltext": false
-    },
-    {
-      "id": "rss-bair",
-      "name": "Berkeley AI Research",
-      "kind": "rss",
-      "config": {
-        "feedUrl": "https://bair.berkeley.edu/blog/feed.xml",
-        "_aihot": {
-          "initialBackfillLimit": 8
-        }
-      },
-      "tier": "T1",
-      "owner_entity_id": null,
-      "participation_mode": "editorial",
-      "interval_minutes": 180,
-      "tags": [
-        "研究"
-      ],
-      "site_fulltext": false,
-      "syndicate_fulltext": false
-    },
-    {
-      "id": "rss-the-verge-ai",
-      "name": "The Verge · AI",
-      "kind": "rss",
-      "config": {
-        "feedUrl": "https://www.theverge.com/rss/ai-artificial-intelligence/index.xml",
+        "url": "https://www.pai.com.cn/",
+        "parseMode": "html",
+        "itemSelector": "div:has(> div > h3 > a[href^='/p/'])",
+        "linkSelector": "h3 a",
+        "titleSelector": "h3 a",
+        "allowUrlPrefixes": ["https://www.pai.com.cn/p/"],
+        "publishedAtUtcOffset": "+08:00",
+        "detail": {
+          "maxFetches": 8,
+          "publishedAtSelector": "h1 + div > div.text-xs",
+          "publishedAtUtcOffset": "+08:00"
+        },
         "_aihot": {
           "initialBackfillLimit": 8
         }
@@ -219,18 +26,28 @@
       "owner_entity_id": null,
       "participation_mode": "editorial",
       "interval_minutes": 60,
-      "tags": [
-        "媒体"
-      ],
+      "tags": ["电商垂媒"],
       "site_fulltext": false,
-      "syndicate_fulltext": false
+      "syndicate_fulltext": false,
+      "enabled": true
     },
     {
-      "id": "rss-techcrunch-ai",
-      "name": "TechCrunch · AI",
-      "kind": "rss",
+      "id": "web-100ec-home",
+      "name": "网经社（电商门户）",
+      "kind": "web_list",
       "config": {
-        "feedUrl": "https://techcrunch.com/category/artificial-intelligence/feed/",
+        "url": "https://www.100ec.cn/",
+        "parseMode": "html",
+        "itemSelector": "li:has(> a[href*='detail--']), .toutiao dl:has(> dt > a[href*='detail--'])",
+        "linkSelector": "a[href*='detail--']",
+        "titleSelector": "a[href*='detail--']",
+        "allowUrlPrefixes": ["https://www.100ec.cn/detail--", "http://www.100ec.cn/detail--"],
+        "publishedAtUtcOffset": "+08:00",
+        "detail": {
+          "maxFetches": 8,
+          "publishedAtSelector": ".title_detail span",
+          "publishedAtUtcOffset": "+08:00"
+        },
         "_aihot": {
           "initialBackfillLimit": 8
         }
@@ -239,18 +56,47 @@
       "owner_entity_id": null,
       "participation_mode": "editorial",
       "interval_minutes": 60,
-      "tags": [
-        "媒体"
-      ],
+      "tags": ["电商垂媒"],
       "site_fulltext": false,
-      "syndicate_fulltext": false
+      "syndicate_fulltext": false,
+      "enabled": true
     },
     {
-      "id": "rss-ars-technica-ai",
-      "name": "Ars Technica · AI",
+      "id": "web-linkshop-home",
+      "name": "联商网（零售与全渠道）",
+      "kind": "web_list",
+      "config": {
+        "url": "https://www.linkshop.com/",
+        "parseMode": "html",
+        "itemSelector": "ul.img_list > li",
+        "linkSelector": "a[href*='/news/']",
+        "titleSelector": "a[href*='/news/']",
+        "allowUrlPrefixes": ["https://www.linkshop.com/news/", "http://www.linkshop.com/news/"],
+        "publishedAtUtcOffset": "+08:00",
+        "detail": {
+          "maxFetches": 8,
+          "publishedAtSelector": ".info span.time",
+          "publishedAtUtcOffset": "+08:00"
+        },
+        "_aihot": {
+          "initialBackfillLimit": 8
+        }
+      },
+      "tier": "T2",
+      "owner_entity_id": null,
+      "participation_mode": "editorial",
+      "interval_minutes": 90,
+      "tags": ["零售媒体"],
+      "site_fulltext": false,
+      "syndicate_fulltext": false,
+      "enabled": true
+    },
+    {
+      "id": "rss-tmtpost",
+      "name": "钛媒体（商业与消费科技）",
       "kind": "rss",
       "config": {
-        "feedUrl": "https://arstechnica.com/ai/feed/",
+        "feedUrl": "https://www.tmtpost.com/rss.xml",
         "_aihot": {
           "initialBackfillLimit": 8
         }
@@ -259,112 +105,204 @@
       "owner_entity_id": null,
       "participation_mode": "editorial",
       "interval_minutes": 60,
-      "tags": [
-        "媒体"
-      ],
+      "tags": ["商业媒体"],
       "site_fulltext": false,
-      "syndicate_fulltext": false
+      "syndicate_fulltext": false,
+      "enabled": true
     },
     {
-      "id": "rss-mit-tech-review-ai",
-      "name": "MIT Technology Review · AI",
+      "id": "rss-woshipm",
+      "name": "人人都是产品经理（产品与电商运营）",
       "kind": "rss",
       "config": {
-        "feedUrl": "https://www.technologyreview.com/topic/artificial-intelligence/feed",
+        "feedUrl": "https://www.woshipm.com/feed",
         "_aihot": {
           "initialBackfillLimit": 8
         }
+      },
+      "tier": "T2",
+      "owner_entity_id": null,
+      "participation_mode": "editorial",
+      "interval_minutes": 90,
+      "tags": ["产品运营"],
+      "site_fulltext": false,
+      "syndicate_fulltext": false,
+      "enabled": true
+    },
+    {
+      "id": "rss-ifanr",
+      "name": "爱范儿（消费与平台动态）",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://www.ifanr.com/feed",
+        "_aihot": {
+          "initialBackfillLimit": 8
+        }
+      },
+      "tier": "T2",
+      "owner_entity_id": null,
+      "participation_mode": "editorial",
+      "interval_minutes": 90,
+      "tags": ["商业科技"],
+      "site_fulltext": false,
+      "syndicate_fulltext": false,
+      "enabled": true
+    },
+    {
+      "id": "rss-geekpark",
+      "name": "极客公园（平台算法与科技商业）",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://www.geekpark.net/rss",
+        "_aihot": {
+          "initialBackfillLimit": 8
+        }
+      },
+      "tier": "T2",
+      "owner_entity_id": null,
+      "participation_mode": "editorial",
+      "interval_minutes": 90,
+      "tags": ["商业科技"],
+      "site_fulltext": false,
+      "syndicate_fulltext": false,
+      "enabled": true
+    },
+    {
+      "id": "mp-qianniu",
+      "name": "千牛头条（待填 ghid 并配 DAJIALA_KEY）",
+      "kind": "mp_account",
+      "config": {
+        "ghid": "gh_TODO_qianniu",
+        "nickname": "千牛头条",
+        "publisherRole": "organization"
+      },
+      "tier": "T1_5",
+      "owner_entity_id": "taotian",
+      "participation_mode": "editorial",
+      "interval_minutes": 120,
+      "tags": ["平台官方", "公众号"],
+      "site_fulltext": false,
+      "syndicate_fulltext": false,
+      "enabled": false
+    },
+    {
+      "id": "mp-douyin-ec",
+      "name": "抖音电商学习中心（待填 ghid 并配 DAJIALA_KEY）",
+      "kind": "mp_account",
+      "config": {
+        "ghid": "gh_TODO_douyin_ec",
+        "nickname": "抖音电商学习中心",
+        "publisherRole": "organization"
+      },
+      "tier": "T1_5",
+      "owner_entity_id": "douyin",
+      "participation_mode": "editorial",
+      "interval_minutes": 120,
+      "tags": ["平台官方", "公众号"],
+      "site_fulltext": false,
+      "syndicate_fulltext": false,
+      "enabled": false
+    },
+    {
+      "id": "mp-wechat-class",
+      "name": "微信公开课（待填 ghid 并配 DAJIALA_KEY）",
+      "kind": "mp_account",
+      "config": {
+        "ghid": "gh_TODO_wechat_class",
+        "nickname": "微信公开课",
+        "publisherRole": "organization"
+      },
+      "tier": "T1_5",
+      "owner_entity_id": "wechat-shop",
+      "participation_mode": "editorial",
+      "interval_minutes": 120,
+      "tags": ["平台官方", "公众号"],
+      "site_fulltext": false,
+      "syndicate_fulltext": false,
+      "enabled": false
+    },
+    {
+      "id": "mp-pdd-merchant",
+      "name": "拼多多商家服务（待填 ghid 并配 DAJIALA_KEY）",
+      "kind": "mp_account",
+      "config": {
+        "ghid": "gh_TODO_pdd_merchant",
+        "nickname": "拼多多商家服务",
+        "publisherRole": "organization"
+      },
+      "tier": "T1_5",
+      "owner_entity_id": "pinduoduo",
+      "participation_mode": "editorial",
+      "interval_minutes": 120,
+      "tags": ["平台官方", "公众号"],
+      "site_fulltext": false,
+      "syndicate_fulltext": false,
+      "enabled": false
+    },
+    {
+      "id": "mp-ebrun",
+      "name": "亿邦动力（待填 ghid 并配 DAJIALA_KEY）",
+      "kind": "mp_account",
+      "config": {
+        "ghid": "gh_TODO_ebrun",
+        "nickname": "亿邦动力"
       },
       "tier": "T2",
       "owner_entity_id": null,
       "participation_mode": "editorial",
       "interval_minutes": 120,
-      "tags": [
-        "媒体"
-      ],
+      "tags": ["电商垂媒", "公众号"],
       "site_fulltext": false,
-      "syndicate_fulltext": false
+      "syndicate_fulltext": false,
+      "enabled": false
     },
     {
-      "id": "rss-the-decoder",
-      "name": "The Decoder",
-      "kind": "rss",
+      "id": "mp-txws",
+      "name": "天下网商（待填 ghid 并配 DAJIALA_KEY）",
+      "kind": "mp_account",
       "config": {
-        "feedUrl": "https://the-decoder.com/feed/",
-        "_aihot": {
-          "initialBackfillLimit": 8
-        }
-      },
-      "tier": "T2",
-      "owner_entity_id": null,
-      "participation_mode": "editorial",
-      "interval_minutes": 60,
-      "tags": [
-        "媒体"
-      ],
-      "site_fulltext": false,
-      "syndicate_fulltext": false
-    },
-    {
-      "id": "rss-simon-willison",
-      "name": "Simon Willison",
-      "kind": "rss",
-      "config": {
-        "feedUrl": "https://simonwillison.net/atom/everything/",
-        "_aihot": {
-          "initialBackfillLimit": 8
-        }
+        "ghid": "gh_TODO_txws",
+        "nickname": "天下网商"
       },
       "tier": "T2",
       "owner_entity_id": null,
       "participation_mode": "editorial",
       "interval_minutes": 120,
-      "tags": [
-        "个人"
-      ],
+      "tags": ["电商垂媒", "公众号"],
       "site_fulltext": false,
-      "syndicate_fulltext": false
+      "syndicate_fulltext": false,
+      "enabled": false
     },
     {
-      "id": "rss-import-ai",
-      "name": "Import AI",
-      "kind": "rss",
+      "id": "mp-daofa",
+      "name": "刀法研究所（待填 ghid 并配 DAJIALA_KEY）",
+      "kind": "mp_account",
       "config": {
-        "feedUrl": "https://importai.substack.com/feed",
-        "_aihot": {
-          "initialBackfillLimit": 8
-        }
+        "ghid": "gh_TODO_daofa",
+        "nickname": "刀法研究所"
       },
       "tier": "T2",
       "owner_entity_id": null,
       "participation_mode": "editorial",
       "interval_minutes": 180,
-      "tags": [
-        "个人",
-        "周刊"
-      ],
+      "tags": ["品牌消费", "公众号"],
       "site_fulltext": false,
-      "syndicate_fulltext": false
+      "syndicate_fulltext": false,
+      "enabled": false
     },
     {
-      "id": "rss-latent-space",
-      "name": "Latent Space",
-      "kind": "rss",
-      "config": {
-        "feedUrl": "https://www.latent.space/feed",
-        "_aihot": {
-          "initialBackfillLimit": 8
-        }
-      },
-      "tier": "T2",
+      "id": "ext-platform-rules-push",
+      "name": "平台规则中心外部推送（需配置 INGEST_TOKEN）",
+      "kind": "external",
+      "config": {},
+      "tier": "T1",
       "owner_entity_id": null,
       "participation_mode": "editorial",
-      "interval_minutes": 180,
-      "tags": [
-        "个人"
-      ],
+      "interval_minutes": 1440,
+      "tags": ["平台规则", "外部推送"],
       "site_fulltext": false,
-      "syndicate_fulltext": false
+      "syndicate_fulltext": false,
+      "enabled": false
     }
   ]
 }

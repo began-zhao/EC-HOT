@@ -15,13 +15,13 @@ import { ENGLISH } from "@aihot/contracts/english";
 import { ITEM_COPY, withSubject } from "@aihot/site";
 import { fakeApi, FIXTURE_AT, itemDetail, startWebServer, type WebServer } from "../apps/web/tests/web-server.ts";
 
-const agent = { slug: "agent", name: "Agent 智能体" };
+const aiEcommerce = { slug: "ai-ecommerce", name: "AI 电商提效" };
 const items: SiteItemDetail[] = [
-  itemDetail({ id: "links-lead", title: "日报头条", topics: [agent], daily: { key: "2026-11-07", lead: true } }),
+  itemDetail({ id: "links-lead", title: "日报头条", topics: [aiEcommerce], daily: { key: "2026-11-07", lead: true } }),
   itemDetail({ id: "links-entry", title: "日报里的一条", daily: { key: "2026-11-07", lead: false } }),
   itemDetail({ id: "links-none", title: "没进日报" }),
   // Tagged with a company its title does not name: that company's topic is the tag's, not the article's.
-  itemDetail({ id: "links-tags", title: "带标签", topics: [agent], tags: ["Agent", "OpenAI", "框架"], tagTopics: { Agent: "agent", OpenAI: "openai" } }),
+  itemDetail({ id: "links-tags", title: "带标签", topics: [aiEcommerce], tags: ["AI提效", "淘宝/天猫", "框架"], tagTopics: { "AI提效": "ai-ecommerce", "淘宝/天猫": "taotian" } }),
   itemDetail({ id: "links-story-indexable", title: "多报道单事实事件", story: { publicId: "links-this-year", title: "测试事件", indexable: true } }),
   itemDetail({ id: "links-story-single", title: "单报道事件", story: { publicId: "links-lone", title: "单报道", indexable: false } }),
 ];
@@ -41,8 +41,8 @@ before(async () => {
     if (url.pathname === "/api/site/pool") {
       return {
         filters: { channel: "all", category: null, tag: null, q: null, tab: "time" },
-        items: [{ id: "links-tags", title: "带标签", summary: "摘要", reason: null, source: { name: "Fixture" }, publishedAt: FIXTURE_AT, timelineAt: FIXTURE_AT, category: "ai-models", tags: ["Agent", "OpenAI", "框架"], score: 80, selected: true, channel: "news", x: null }],
-        tagTopics: { Agent: "agent", OpenAI: "openai" },
+        items: [{ id: "links-tags", title: "带标签", summary: "摘要", reason: null, source: { name: "Fixture" }, publishedAt: FIXTURE_AT, timelineAt: FIXTURE_AT, category: "platform-rules", tags: ["AI提效", "淘宝/天猫", "框架"], score: 80, selected: true, channel: "news", x: null }],
+        tagTopics: { "AI提效": "ai-ecommerce", "淘宝/天猫": "taotian" },
         page: 1, pageCount: 1, total: 1, todayCount: 1, freshness: FIXTURE_AT,
       };
     }
@@ -97,20 +97,20 @@ test("a tag that is a topic's own leads to the topic page, and not beside that t
   const $ = await page("/items/links-tags");
   const hrefs = (text: string) => $("a").filter((_, el) => $(el).text() === text).toArray().map((el) => $(el).attr("href"));
   // The rail and the phone chips alike.
-  assert.deepEqual(hrefs("Agent 智能体"), ["/topics/agent", "/topics/agent"]);
-  assert.deepEqual(hrefs("#Agent"), []);
-  assert.deepEqual(hrefs("#OpenAI"), ["/topics/openai", "/topics/openai"]);
+  assert.deepEqual(hrefs("AI 电商提效"), ["/topics/ai-ecommerce", "/topics/ai-ecommerce"]);
+  assert.deepEqual(hrefs("#AI提效"), []);
+  assert.deepEqual(hrefs("#淘宝/天猫"), ["/topics/taotian", "/topics/taotian"]);
   assert.deepEqual(hrefs("#框架"), [`/all?tag=${encodeURIComponent("框架")}`, `/all?tag=${encodeURIComponent("框架")}`]);
-  assert.equal($("a[href^='/all?tag=Agent']").length, 0);
+  assert.equal($(`a[href^='/all?tag=${encodeURIComponent("AI提效")}']`).length, 0);
   // Non-topic filter links carry nofollow while topic links remain crawlable.
   assert.ok($(`a[href="/all?tag=${encodeURIComponent("框架")}"]`).toArray().every((el) => $(el).attr("rel") === "nofollow"));
-  assert.ok($('a[href="/topics/openai"]').toArray().every((el) => !$(el).attr("rel")));
+  assert.ok($('a[href="/topics/taotian"]').toArray().every((el) => !$(el).attr("rel")));
 
   const pool = await page("/all");
-  assert.equal(pool('a[href="/topics/agent"]').text(), "#Agent");
-  assert.equal(pool('a[href="/topics/openai"]').text(), "#OpenAI");
+  assert.equal(pool('a[href="/topics/ai-ecommerce"]').text(), "#AI提效");
+  assert.equal(pool('a[href="/topics/taotian"]').text(), "#淘宝/天猫");
   assert.equal(pool(`a[href="/all?tag=${encodeURIComponent("框架")}"]`).attr("rel"), "nofollow");
-  assert.equal(pool('a[href="/all?category=ai-models"]').first().attr("rel"), "nofollow");
+  assert.equal(pool('a[href="/all?category=platform-rules"]').first().attr("rel"), "nofollow");
 });
 
 test("an article in an indexable event visibly links to the event page even without other facts; a single-report event does not", async () => {
