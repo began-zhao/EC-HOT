@@ -81,7 +81,7 @@ export const SITE = {
   poweredBy: { name: "AIHOT", url: "https://aihot.news" } as { name: string; url: string } | null,
   /** 结构化数据里的网站运营者（搜索引擎用）。 */
   organization: {
-    name: "ECHOT 电商情报站",
+    name: "咖飞（ECHOT 电商情报站）",
     /** 创始人（选填）。 */
     founder: null as Founder | null,
   },
